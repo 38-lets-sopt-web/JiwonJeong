@@ -7,12 +7,12 @@ html {
 
 body {
   /* Lower by the height of the header */
-  margin-top: 60px;
+  margin-top: 75px;
 }
 
 header {
   position: fixed;
-  top: 2%;
+  top: 15px;
   left: 2%;
   width: 96%;
   height: 60px;

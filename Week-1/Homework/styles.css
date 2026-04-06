@@ -1,0 +1,93 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+html {
+  background-color: hotpink;
+  font-family: "Pretendard", sans-serif;
+}
+
+body {
+  /* Lower by the height of the header */
+  margin-top: 60px;
+}
+
+header {
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  width: 96%;
+  height: 60px;
+
+  background-color: rgba(255, 255, 255, 0.264);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(199, 199, 199, 0.393);
+  border-radius: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+
+  /* Use grid to divide vw into 1/3 */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.profile {
+  height: 100%;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.profile img {
+  display: block;
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+
+  transition: all 0.3s ease;
+}
+
+/* for advanced assignments */
+.profile img:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3%);
+}
+
+.title {
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.title h2 {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.github {
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.github img {
+  height: 40px;
+  aspect-ratio: 1;
+
+  transition: all 0.3s ease;
+}
+
+.github img:hover {
+  filter: invert(90%) drop-shadow(0 0 4px #cbcbcb);
+  transform: translateY(-3%);
+}

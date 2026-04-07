@@ -242,18 +242,15 @@ main section h1 {
   border-radius: 10px;
 }
 
-/* [핵심] 애니메이션: 절반(1세트)만큼 이동했을 때 0으로 리셋 */
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    /* 1세트 너비만큼 왼쪽으로 이동 (250px * 4 = 1000px) */
     transform: translateX(calc(-250px * 4));
   }
 }
 
-/* 마우스 올리면 일시 정지 (선택 사항) */
 .carousel:hover {
   animation-play-state: paused;
 }

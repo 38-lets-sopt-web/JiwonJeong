@@ -140,6 +140,7 @@ nav ul li a {
 main {
   flex: 4;
   min-width: 0;
+  margin-bottom: 120px;
 }
 
 main section {
@@ -373,13 +374,25 @@ main section h1 {
 }
 
 .letter-text li::before {
-  content: "⛳️";
+  content: "\26F3";
   margin-right: 8px;
 }
 
 .letter-text li::after {
-  content: "🏌🏼‍♂️";
+  content: "\1F3CC";
   margin-left: auto;
+}
+
+footer {
+  width: 100%;
+  height: 180px;
+  background-color: #b8b8b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
 }
 
 

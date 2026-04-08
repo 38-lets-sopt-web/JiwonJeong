@@ -31,7 +31,7 @@ header {
   gap: 5%;
 }
 
-header > div {
+header>div {
   flex: 1;
   display: flex;
   align-items: center;
@@ -135,6 +135,9 @@ nav ul li:not(:last-child) {
 }
 
 nav ul li a {
+  width: calc(100% - 0.5rem);
+  height: 100%;
+  display: block;
   color: black;
   margin-left: 0.5rem;
 }
@@ -144,10 +147,14 @@ main {
   min-width: 0;
 }
 
+main section {
+  scroll-margin-top: 100px;
+}
+
 main section h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 1.2rem 0.5rem;
+  margin: 20px 0.5rem;
 }
 
 .photos {
@@ -157,19 +164,36 @@ main section h1 {
   gap: 1.2rem;
 
 
-  grid-template-areas: 
+  grid-template-areas:
     "a b c c"
     "d d d e"
     "d d d f";
 }
 
 /* match names of each boxes */
-.box-a { grid-area: a; }
-.box-b { grid-area: b; }
-.box-c { grid-area: c; }
-.box-d { grid-area: d; }
-.box-e { grid-area: e; }
-.box-f { grid-area: f; }
+.box-a {
+  grid-area: a;
+}
+
+.box-b {
+  grid-area: b;
+}
+
+.box-c {
+  grid-area: c;
+}
+
+.box-d {
+  grid-area: d;
+}
+
+.box-e {
+  grid-area: e;
+}
+
+.box-f {
+  grid-area: f;
+}
 
 .photobox {
   position: relative;
@@ -209,7 +233,7 @@ main section h1 {
 }
 
 #gallery {
-  margin-top: 60px;
+  margin-top: 120px;
   margin-bottom: 60px;
 }
 
@@ -223,7 +247,7 @@ main section h1 {
 
 .carousel {
   display: flex;
-  width: calc(250px * 12); 
+  width: calc(250px * 12);
   animation: scroll 20s linear infinite;
 }
 
@@ -246,6 +270,7 @@ main section h1 {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(calc(-250px * 4));
   }
@@ -255,5 +280,110 @@ main section h1 {
   animation-play-state: paused;
 }
 
+#favorites {
+  margin-top: 120px;
+}
+
+.cards {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 20px;
+}
+
+.card {
+  background: #f4f4f9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.card-body p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1rem;
+  margin-bottom: 15px;
+}
+
+.card-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.card-btns button {
+  flex: 1;
+  border: none;
+  padding: 8px 0;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-like {
+  background-color: #cee4f0;
+  color: #4090cc;
+}
+
+.btn-like:hover {
+  background-color: #4090cc;
+  color: white;
+}
+
+.btn-dislike {
+  background-color: #f7dada;
+  color: #ef7373;
+}
+
+.btn-dislike:hover {
+  background-color: #ef7373;
+  color: white;
+}
 
 
+/* use media query */
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -6,11 +6,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  /* Lower by the height of the header */
-  margin-top: 130px;
-}
-
 header {
   position: fixed;
   top: 15px;
@@ -149,6 +144,7 @@ main {
 
 main section {
   scroll-margin-top: 100px;
+  margin-top: 130px;
 }
 
 main section h1 {
@@ -233,7 +229,6 @@ main section h1 {
 }
 
 #gallery {
-  margin-top: 120px;
   margin-bottom: 60px;
 }
 
@@ -264,6 +259,7 @@ main section h1 {
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes scroll {
@@ -278,10 +274,6 @@ main section h1 {
 
 .carousel:hover {
   animation-play-state: paused;
-}
-
-#favorites {
-  margin-top: 120px;
 }
 
 .cards {
@@ -366,6 +358,28 @@ main section h1 {
 .btn-dislike:hover {
   background-color: #ef7373;
   color: white;
+}
+
+.letter-text {
+  padding: 30px;
+  background-color: #f4f4f9;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-text li {
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+
+.letter-text li::before {
+  content: "⛳️";
+  margin-right: 8px;
+}
+
+.letter-text li::after {
+  content: "🏌🏼‍♂️";
+  margin-left: auto;
 }
 
 

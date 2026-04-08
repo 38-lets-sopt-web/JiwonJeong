@@ -1,5 +1,19 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 
+:root {
+  /* color palette */
+  --html-bg-color: #f1f1f6;
+  --item-bg-color: #f4f4f9;
+  --text-color: #000000;
+  --text-inverted-color: #ffffff;
+  --shadow-color: rgba(0,0,0,0.2);
+
+  --btn-blue-color: #4090cc;
+  --btn-blue-bg-color: #cee4f0;
+  --btn-red-color: #ef7373;
+  --btn-red-bg-color: #f7dada;
+}
+
 html {
   background-color: #f1f1f6;
   font-family: "Pretendard", sans-serif;
@@ -18,7 +32,7 @@ header {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(199, 199, 199, 0.1);
   border-radius: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px var(--shadow-color);
   z-index: 10;
 
   display: flex;
@@ -51,7 +65,7 @@ header>div {
 
 /* for advanced assignments */
 .profile img:hover {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 4px var(--shadow-color);
   transform: translateY(-3%);
 }
 
@@ -101,10 +115,10 @@ nav {
   top: 110px;
   flex: 1;
   align-self: flex-start;
-  background-color: #f4f4f9;
+  background-color: var(--item-bg-color);
   padding: 1.5rem;
   border-radius: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 nav ul li {
@@ -126,14 +140,14 @@ nav ul li:last-child {
 }
 
 nav ul li:not(:last-child) {
-  border-bottom: 1px solid rgb(175, 175, 175);
+  border-bottom: 1px solid #afafaf;
 }
 
 nav ul li a {
   width: calc(100% - 0.5rem);
   height: 100%;
   display: block;
-  color: black;
+  color: var(--text-color);
   margin-left: 0.5rem;
 }
 
@@ -194,7 +208,6 @@ main section h1 {
 
 .photobox {
   position: relative;
-  background-color: #d1f2ff;
   border-radius: 30px;
   overflow: hidden;
 }
@@ -213,7 +226,7 @@ main section h1 {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  color: white;
+  color: var(--text-inverted-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +273,7 @@ main section h1 {
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 @keyframes scroll {
@@ -285,16 +298,16 @@ main section h1 {
 }
 
 .card {
-  background: #f4f4f9;
+  background: var(--item-bg-color);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px var(--shadow-color);
   transition: all 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 16px var(--shadow-color);
 }
 
 .card-thumb {
@@ -342,30 +355,30 @@ main section h1 {
 }
 
 .btn-like {
-  background-color: #cee4f0;
-  color: #4090cc;
+  background-color: var(--btn-blue-bg-color);
+  color: var(--btn-blue-color);
 }
 
 .btn-like:hover {
-  background-color: #4090cc;
+  background-color: var(--btn-blue-color);
   color: white;
 }
 
 .btn-dislike {
-  background-color: #f7dada;
-  color: #ef7373;
+  background-color: var(--btn-red-bg-color);
+  color: var(--btn-red-color);
 }
 
 .btn-dislike:hover {
-  background-color: #ef7373;
+  background-color: var(--btn-red-color);
   color: white;
 }
 
 .letter-text {
   padding: 30px;
-  background-color: #f4f4f9;
+  background-color: var(--item-bg-color);
   border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 .letter-text li {

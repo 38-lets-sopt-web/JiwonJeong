@@ -269,7 +269,7 @@ main section h1 {
   }
 
   100% {
-    transform: translateX(calc(-250px * 4));
+    transform: translate3d(calc(-250px * 6), 0, 0);
   }
 }
 

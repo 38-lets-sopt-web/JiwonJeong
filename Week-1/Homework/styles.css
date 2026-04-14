@@ -15,7 +15,7 @@
 }
 
 html {
-  background-color: #f1f1f6;
+  background-color: var(--html-bg-color);
   font-family: "Pretendard", sans-serif;
   scroll-behavior: smooth;
 }

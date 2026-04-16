@@ -411,19 +411,19 @@ footer {
 
 /* use media query */
 @media (max-width: 1200px) {
-  .card-grid {
+  .cards {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 900px) {
-  .card-grid {
+  .cards {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .card-grid {
+  .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }

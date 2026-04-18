@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'NanumSquareNeo';
+  src: url('../fonts/NanumSquareNeo-Variable.woff2') format('woff2'),
+    url('../fonts/NanumSquareNeo-Variable.woff') format('woff');
+  font-display: swap;
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Variables */
+:root {
+  --font-family-base: 'NanumSquareNeo', sans-serif;
+  --primary-color: #2db400;
+  --secondary-color: #c7e8c2;
+  --surface: #ffffff;
+  --border: #dcdcdc;
+  --text-primary: #232323;
+  --text-muted: #888;
+  --income: #4e73df;
+  --expense: #e74a3b;
+  --radius-pill: 3rem;
+  --radius-md: 0.8rem;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-base);
+}
+
+body {
+  background-color: var(--secondary-color);
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select,
+.combo-input__input,
+.combo-input__select {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus,
+select:focus,
+.combo-input__input:focus,
+.combo-input__select:focus {
+  border-color: var(--primary-color);
+}
+
+select,
+.combo-input__select,
+.ledger__sort {
+  appearance: none;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-color: var(--surface);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* Amount states */
+.amount--income {
+  color: var(--income);
+  font-weight: bold;
+}
+
+.amount--expense {
+  color: var(--expense);
+  font-weight: bold;
+}
+
+/* Number input */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

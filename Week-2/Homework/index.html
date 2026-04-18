@@ -1,24 +1,191 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./reset.css" rel="stylesheet">
   <link href="./style.css" rel="stylesheet">
+  <script defer src="./script.js" type="module"></script>
   <title>지원이의 가계부</title>
 </head>
+
 <body>
-  <header>
-    <div>
-      <a href="">&#128184;</a>
-    </div>
-    <div>
+
+  <header class="header">
+    <div class="header__logo"><a href="">💸</a></div>
+    <div class="header__title">
       <h1>지원이의 가계부</h1>
     </div>
-    <div>
+    <div class="header__sub">
       <p>돈을 아낍시다</p>
     </div>
   </header>
+
+  <!-- 검색 필터 -->
+  <section class="filter">
+    <h2 class="filter__title">검색 필터</h2>
+    <div class="filter__grid">
+
+      <div class="filter__item filter__item--full">
+        <label for="filter-title">제목</label>
+        <input type="text" id="filter-title" placeholder="내역을 입력하세요">
+      </div>
+
+      <div class="filter__item">
+        <label for="filter-type">수입/지출</label>
+        <select id="filter-type">
+          <option value="">전체</option>
+          <option value="수입">수입</option>
+          <option value="지출">지출</option>
+        </select>
+      </div>
+
+      <div class="filter__item">
+        <label for="filter-category">카테고리</label>
+        <select id="filter-category">
+          <option value="">전체</option>
+        </select>
+      </div>
+
+      <div class="filter__item">
+        <label for="filter-method">결제수단</label>
+        <select id="filter-method">
+          <option value="">전체</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="filter__actions">
+      <button id="apply-btn" class="btn btn--primary">적용</button>
+      <button id="reset-btn" class="btn btn--secondary">초기화</button>
+    </div>
+  </section>
+
+  <!-- 가계부 목록 -->
+  <div class="ledger">
+    <div class="ledger__controls">
+      <select id="sort-order" class="ledger__sort">
+        <option value="desc">날짜 내림차순</option>
+        <option value="asc">날짜 오름차순</option>
+      </select>
+      <div class="ledger__actions">
+        <button id="delete-btn" class="btn btn--danger">선택 삭제</button>
+        <button id="add-btn" class="btn btn--primary">+ 추가</button>
+      </div>
+    </div>
+
+    <table id="expense-table" class="ledger__table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="all-check"></th>
+          <th>제목</th>
+          <th>금액</th>
+          <th>날짜</th>
+          <th>카테고리</th>
+          <th>결제수단</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" class="ledger__total-label">합계</td>
+          <td id="total-amount" colspan="4">0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- 추가 모달 -->
+  <div id="add-modal" class="modal modal--hidden">
+    <div class="modal__content">
+      <h2 class="modal__heading">내역 추가</h2>
+      <div class="modal__form">
+
+        <div class="modal__field">
+          <label for="modal-title">제목</label>
+          <input type="text" id="modal-title" placeholder="예) 스타벅스 아메리카노">
+        </div>
+
+        <div class="modal__field">
+          <label>구분</label>
+          <div class="type-toggle">
+            <button type="button" class="type-toggle__btn type-toggle__btn--active" data-value="expense">지출</button>
+            <button type="button" class="type-toggle__btn" data-value="income">수입</button>
+          </div>
+        </div>
+
+        <div class="modal__field">
+          <label for="modal-amount">금액</label>
+          <input type="number" id="modal-amount" placeholder="예) 4500" min="0">
+        </div>
+
+        <div class="modal__field">
+          <label for="modal-date">날짜</label>
+          <input type="date" id="modal-date">
+        </div>
+
+        <div class="modal__field">
+          <label for="modal-category">카테고리</label>
+          <div class="combo-input">
+            <select id="modal-category-select" class="combo-input__select">
+              <option value="">선택</option>
+            </select>
+            <input type="text" id="modal-category" class="combo-input__input" placeholder="직접 입력">
+          </div>
+        </div>
+
+        <div class="modal__field">
+          <label for="modal-payment">결제수단</label>
+          <div class="combo-input">
+            <select id="modal-payment-select" class="combo-input__select">
+              <option value="">선택</option>
+            </select>
+            <input type="text" id="modal-payment" class="combo-input__input" placeholder="직접 입력">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal__actions">
+        <button id="modal-cancel-btn" class="btn btn--secondary">닫기</button>
+        <button id="modal-save-btn" class="btn btn--primary">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 상세 모달 -->
+  <div id="detail-modal" class="modal modal--hidden">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h2 class="modal__heading">상세 내역</h2>
+        <button id="detail-close-btn" class="modal__close">✕</button>
+      </div>
+      <div class="detail">
+        <div class="detail__amount-wrap">
+          <span id="detail-amount" class="detail__amount"></span>
+        </div>
+        <ul class="detail__list">
+          <li class="detail__item">
+            <span class="detail__label">제목</span>
+            <span id="detail-title" class="detail__value"></span>
+          </li>
+          <li class="detail__item">
+            <span class="detail__label">날짜</span>
+            <span id="detail-date" class="detail__value"></span>
+          </li>
+          <li class="detail__item">
+            <span class="detail__label">카테고리</span>
+            <span id="detail-category" class="detail__value"></span>
+          </li>
+          <li class="detail__item">
+            <span class="detail__label">결제수단</span>
+            <span id="detail-payment" class="detail__value"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   
 </body>
+
 </html>

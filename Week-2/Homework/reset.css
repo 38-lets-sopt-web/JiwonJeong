@@ -16,11 +16,16 @@
   }
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   /* 4. Increase line-height */
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+  font-size: 1.6rem;
 }
 
 /* 6. Improve media defaults */
@@ -52,4 +57,10 @@ h1, h2, h3, h4, h5, h6 {
 */
 #root, #__next {
   isolation: isolate;
+}
+
+select {
+  -webkit-appearance: none; /* 크롬, 사파리 */
+  -moz-appearance: none;    /* 파이어폭스 */
+  appearance: none;         /* 표준 */
 }

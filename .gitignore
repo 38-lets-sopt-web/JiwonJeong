@@ -44,3 +44,10 @@ __snapshots__/
 # --- [ System ] ---
 # 썸네일 파일 등 시스템 파일
 Thumbs.db
+
+# 보통 node_modules 안에 .vite가 숨어있으므로 이것만 있으면 됩니다.
+node_modules/
+
+# 만약 .vite가 node_modules 밖으로 나와 있다면 아래를 추가하세요.
+.vite/
+**/_metadata.json

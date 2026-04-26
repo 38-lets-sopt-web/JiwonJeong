@@ -1,0 +1,46 @@
+# --- [ Dependencies ] ---
+# 외부 라이브러리 (npm install로 설치 가능하므로 제외)
+node_modules/
+.pnp
+.pnp.js
+
+# --- [ Production Build ] ---
+# 빌드 결과물 (배포 시에만 생성하므로 제외)
+dist/
+build/
+
+# --- [ Environment Variables ] ---
+# 보안이 필요한 설정 파일 (API Key 등이 포함되므로 절대 올리지 마세요)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- [ Debug / Logs ] ---
+# 에러 로그 및 로그 파일
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# --- [ OS / Editor ] ---
+# 운영체제 및 에디터 관련 설정 (개인마다 다르므로 제외)
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- [ Testing ] ---
+# 테스트 리포트 및 결과물
+coverage/
+__snapshots__/
+
+# --- [ System ] ---
+# 썸네일 파일 등 시스템 파일
+Thumbs.db

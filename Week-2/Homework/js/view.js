@@ -4,6 +4,7 @@ import { ExpenseService } from "./service.js";
 const ExpenseView = {
   /** DOM 요소 캐싱 */
   el: {
+    reloadBtn: document.getElementById("reload-btn"),
     filter: {
       title: document.getElementById("filter-title"),
       type: document.getElementById("filter-type"),
@@ -93,6 +94,44 @@ const ExpenseView = {
     ].forEach((el) => (el.value = ""));
   },
 
+  /** 텍스트만 담는 테이블 셀을 생성합니다. */
+  _createTextCell(value) {
+    const td = document.createElement("td");
+    td.textContent = value;
+    return td;
+  },
+
+  /** 가계부 내역 한 행을 생성합니다. */
+  _createLedgerRow(item) {
+    const { text, className } = ExpenseService.formatAmount(item.amount);
+    const tr = document.createElement("tr");
+    const checkCell = document.createElement("td");
+    const checkbox = document.createElement("input");
+    const amountCell = document.createElement("td");
+
+    tr.dataset.id = item.id;
+    tr.classList.add("ledger__row--clickable");
+
+    checkbox.type = "checkbox";
+    checkbox.className = "ledger__row-check";
+    checkbox.dataset.id = item.id;
+    checkCell.appendChild(checkbox);
+
+    amountCell.className = className;
+    amountCell.textContent = text;
+
+    tr.append(
+      checkCell,
+      this._createTextCell(item.title),
+      amountCell,
+      this._createTextCell(item.date),
+      this._createTextCell(item.category),
+      this._createTextCell(item.payment),
+    );
+
+    return tr;
+  },
+
   /**
    * 가계부 내역 목록을 테이블에 렌더링하고 총계를 업데이트합니다.
    * @param {Expense[]} expenses - 렌더링할 내역 배열
@@ -100,26 +139,14 @@ const ExpenseView = {
   render(expenses) {
     const frag = document.createDocumentFragment();
     let totalAmount = 0;
-    this.el.ledger.tableBody.innerHTML = "";
 
     expenses.forEach((item) => {
       totalAmount += item.amount;
-      const { text, className } = ExpenseService.formatAmount(item.amount);
-      const tr = document.createElement("tr");
-      tr.dataset.id = item.id;
-      tr.classList.add("ledger__row--clickable");
-      tr.innerHTML = `
-        <td><input type="checkbox" class="ledger__row-check" data-id="${item.id}"></td>
-        <td>${item.title}</td>
-        <td class="${className}">${text}</td>
-        <td>${item.date}</td>
-        <td>${item.category}</td>
-        <td>${item.payment}</td>
-      `;
-      frag.appendChild(tr);
+      frag.appendChild(this._createLedgerRow(item));
     });
 
-    this.el.ledger.tableBody.appendChild(frag);
+    this.el.ledger.tableBody.replaceChildren(frag);
+    this.el.ledger.allCheck.checked = false;
 
     const { text, className } = ExpenseService.formatAmount(totalAmount);
     this.el.ledger.totalDisplay.textContent = text;
@@ -144,6 +171,16 @@ const ExpenseView = {
     this.el.ledger.tableBody
       .querySelectorAll(".ledger__row-check")
       .forEach((cb) => (cb.checked = checked));
+  },
+
+  /** 개별 체크박스 상태를 기준으로 전체 선택 체크박스를 갱신합니다. */
+  updateAllCheckState() {
+    const checkboxes = [
+      ...this.el.ledger.tableBody.querySelectorAll(".ledger__row-check"),
+    ];
+
+    this.el.ledger.allCheck.checked =
+      checkboxes.length > 0 && checkboxes.every((cb) => cb.checked);
   },
 
   /**

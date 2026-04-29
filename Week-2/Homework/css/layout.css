@@ -19,6 +19,14 @@
   text-align: center;
 }
 
+.header__reload {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 .header__title h1 {
   font-size: 1.2em;
   font-weight: 600;

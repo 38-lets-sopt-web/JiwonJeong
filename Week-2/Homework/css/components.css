@@ -9,21 +9,12 @@
   font-size: 0.95em;
 }
 
-.btn--primary {
+.btn--primary .btn--secondary {
   background-color: var(--text-primary);
-  color: #ffffff;
+  color: var(--surface);
 }
 
-.btn--primary:hover {
-  background-color: #000000;
-}
-
-.btn--secondary {
-  background-color: var(--text-primary);
-  color: #ffffff;
-}
-
-.btn--secondary:hover {
+.btn--primary:hover .btn--secondary:hover {
   background-color: #000000;
 }
 
@@ -170,7 +161,7 @@
 
 .modal__actions .btn--primary {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--surface);
 }
 
 .modal__actions .btn--primary:hover {
@@ -209,13 +200,13 @@
 .type-toggle__btn[data-value="expense"].type-toggle__btn--active {
   background: var(--expense);
   border-color: var(--expense);
-  color: #fff;
+  color: var(--surface);
 }
 
 .type-toggle__btn[data-value="income"].type-toggle__btn--active {
   background: var(--income);
   border-color: var(--income);
-  color: #fff;
+  color: var(--surface);
 }
 
 .type-toggle__btn:not(.type-toggle__btn--active):hover {

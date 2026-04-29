@@ -77,6 +77,13 @@ function handleSave() {
   refreshUI(updated);
 }
 
+/** 모달의 배경을 클릭하면 닫히도록 이벤트를 연결합니다. */
+function setupBackdropClose(modalElement, closeFunction) {
+  modalElement.addEventListener("click", (e) => {
+    if (e.target === modalElement) closeFunction();
+  });
+}
+
 /** 앱을 초기화하고 이벤트를 연결합니다. */
 function setup() {
   ExpenseRepository.prepare(defaultExpenses);
@@ -90,6 +97,7 @@ function setup() {
     ExpenseView.el.modal.paymentInput,
   );
   ExpenseView._bindTypeToggle();
+  ExpenseView.el.reloadBtn.addEventListener("click", () => location.reload());
   ExpenseView.el.filter.applyBtn.addEventListener("click", syncView);
   ExpenseView.el.filter.resetBtn.addEventListener("click", () => {
     ExpenseView.clearAllFilterState();
@@ -100,6 +108,10 @@ function setup() {
   ExpenseView.el.ledger.allCheck.addEventListener("change", (e) =>
     ExpenseView.toggleAllChecks(e.target.checked),
   );
+  ExpenseView.el.ledger.tableBody.addEventListener("change", (e) => {
+    if (!e.target.classList.contains("ledger__row-check")) return;
+    ExpenseView.updateAllCheckState();
+  });
   ExpenseView.el.ledger.addBtn.addEventListener("click", () =>
     ExpenseView.openAddModal(),
   );
@@ -107,15 +119,15 @@ function setup() {
     ExpenseView.closeAddModal(),
   );
   ExpenseView.el.modal.saveBtn.addEventListener("click", handleSave);
-  ExpenseView.el.modal.root.addEventListener("click", (e) => {
-    if (e.target === ExpenseView.el.modal.root) ExpenseView.closeAddModal();
-  });
+  setupBackdropClose(ExpenseView.el.modal.root, () =>
+    ExpenseView.closeAddModal(),
+  );
   ExpenseView.el.detail.closeBtn.addEventListener("click", () =>
     ExpenseView.closeDetailModal(),
   );
-  ExpenseView.el.detail.root.addEventListener("click", (e) => {
-    if (e.target === ExpenseView.el.detail.root) ExpenseView.closeDetailModal();
-  });
+  setupBackdropClose(ExpenseView.el.detail.root, () =>
+    ExpenseView.closeDetailModal(),
+  );
   ExpenseView.el.ledger.tableBody.addEventListener("click", (e) => {
     if (e.target.type === "checkbox") return;
     const tr = e.target.closest("tr.ledger__row--clickable");

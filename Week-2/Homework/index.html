@@ -12,7 +12,9 @@
 <body>
 
   <header class="header">
-    <div class="header__logo"><a href="">💸</a></div>
+    <div class="header__logo">
+      <button id="reload-btn" class="header__reload" type="button">💸</button>
+    </div>
     <div class="header__title">
       <h1>지원이의 가계부</h1>
     </div>
@@ -21,84 +23,86 @@
     </div>
   </header>
 
-  <!-- 검색 필터 -->
-  <section class="filter">
-    <h2 class="filter__title">검색 필터</h2>
-    <div class="filter__grid">
+  <main>
+    <!-- 검색 필터 -->
+    <section class="filter">
+      <h2 class="filter__title">검색 필터</h2>
+      <div class="filter__grid">
 
-      <div class="filter__item filter__item--full">
-        <label for="filter-title">제목</label>
-        <input type="text" id="filter-title" placeholder="내역을 입력하세요">
+        <div class="filter__item filter__item--full">
+          <label for="filter-title">제목</label>
+          <input type="text" id="filter-title" placeholder="내역을 입력하세요">
+        </div>
+
+        <div class="filter__item">
+          <label for="filter-type">수입/지출</label>
+          <select id="filter-type">
+            <option value="">전체</option>
+            <option value="수입">수입</option>
+            <option value="지출">지출</option>
+          </select>
+        </div>
+
+        <div class="filter__item">
+          <label for="filter-category">카테고리</label>
+          <select id="filter-category">
+            <option value="">전체</option>
+          </select>
+        </div>
+
+        <div class="filter__item">
+          <label for="filter-method">결제수단</label>
+          <select id="filter-method">
+            <option value="">전체</option>
+          </select>
+        </div>
+
       </div>
+      <div class="filter__actions">
+        <button id="apply-btn" class="btn btn--primary">적용</button>
+        <button id="reset-btn" class="btn btn--secondary">초기화</button>
+      </div>
+    </section>
 
-      <div class="filter__item">
-        <label for="filter-type">수입/지출</label>
-        <select id="filter-type">
-          <option value="">전체</option>
-          <option value="수입">수입</option>
-          <option value="지출">지출</option>
+    <!-- 가계부 목록 -->
+    <section class="ledger">
+      <div class="ledger__controls">
+        <select id="sort-order" class="ledger__sort">
+          <option value="desc">날짜 내림차순</option>
+          <option value="asc">날짜 오름차순</option>
         </select>
+        <div class="ledger__actions">
+          <button id="delete-btn" class="btn btn--danger">선택 삭제</button>
+          <button id="add-btn" class="btn btn--primary">+ 추가</button>
+        </div>
       </div>
 
-      <div class="filter__item">
-        <label for="filter-category">카테고리</label>
-        <select id="filter-category">
-          <option value="">전체</option>
-        </select>
-      </div>
-
-      <div class="filter__item">
-        <label for="filter-method">결제수단</label>
-        <select id="filter-method">
-          <option value="">전체</option>
-        </select>
-      </div>
-
-    </div>
-    <div class="filter__actions">
-      <button id="apply-btn" class="btn btn--primary">적용</button>
-      <button id="reset-btn" class="btn btn--secondary">초기화</button>
-    </div>
-  </section>
-
-  <!-- 가계부 목록 -->
-  <div class="ledger">
-    <div class="ledger__controls">
-      <select id="sort-order" class="ledger__sort">
-        <option value="desc">날짜 내림차순</option>
-        <option value="asc">날짜 오름차순</option>
-      </select>
-      <div class="ledger__actions">
-        <button id="delete-btn" class="btn btn--danger">선택 삭제</button>
-        <button id="add-btn" class="btn btn--primary">+ 추가</button>
-      </div>
-    </div>
-
-    <table id="expense-table" class="ledger__table">
-      <thead>
-        <tr>
-          <th><input type="checkbox" id="all-check"></th>
-          <th>제목</th>
-          <th>금액</th>
-          <th>날짜</th>
-          <th>카테고리</th>
-          <th>결제수단</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-      <tfoot>
-        <tr>
-          <td colspan="2" class="ledger__total-label">합계</td>
-          <td id="total-amount" colspan="4">0</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+      <table id="expense-table" class="ledger__table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="all-check"></th>
+            <th>제목</th>
+            <th>금액</th>
+            <th>날짜</th>
+            <th>카테고리</th>
+            <th>결제수단</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" class="ledger__total-label">합계</td>
+            <td id="total-amount" colspan="4">0</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+  </main>
 
   <!-- 추가 모달 -->
-  <div id="add-modal" class="modal modal--hidden">
+  <div id="add-modal" class="modal modal--hidden" role="dialog" aria-modal="true" aria-labelledby="add-modal-heading">
     <div class="modal__content">
-      <h2 class="modal__heading">내역 추가</h2>
+      <h2 id="add-modal-heading" class="modal__heading">내역 추가</h2>
       <div class="modal__form">
 
         <div class="modal__field">
@@ -146,18 +150,18 @@
 
       </div>
       <div class="modal__actions">
-        <button id="modal-cancel-btn" class="btn btn--secondary">닫기</button>
-        <button id="modal-save-btn" class="btn btn--primary">저장</button>
+        <button id="modal-cancel-btn" class="btn btn--secondary" type="button">닫기</button>
+        <button id="modal-save-btn" class="btn btn--primary" type="button">저장</button>
       </div>
     </div>
   </div>
 
   <!-- 상세 모달 -->
-  <div id="detail-modal" class="modal modal--hidden">
+  <div id="detail-modal" class="modal modal--hidden" role="dialog" aria-modal="true" aria-labelledby="detail-modal-heading">
     <div class="modal__content">
       <div class="modal__header">
-        <h2 class="modal__heading">상세 내역</h2>
-        <button id="detail-close-btn" class="modal__close">✕</button>
+        <h2 id="detail-modal-heading" class="modal__heading">상세 내역</h2>
+        <button id="detail-close-btn" class="modal__close" type="button" aria-label="상세 내역 닫기">✕</button>
       </div>
       <div class="detail">
         <div class="detail__amount-wrap">

@@ -16,15 +16,6 @@ const ExpenseService = {
    * @returns {Expense[]} 필터링된 결과
    */
   filter(expenses, conditions) {
-    const hasActiveFilters =
-      conditions.title ||
-      conditions.type ||
-      conditions.category ||
-      conditions.method;
-
-    if (!hasActiveFilters) return expenses;  // 활성 필터 없다면 그대로 리턴(종료)
-
-    // 필터가 비어 있지 않다면 OR비교연산자 우측 조건으로 필터링
     return expenses.filter((item) => {
       const isTitleMatched =
         !conditions.title || item.title.toLowerCase().includes(conditions.title);
@@ -32,9 +23,11 @@ const ExpenseService = {
         !conditions.category || item.category === conditions.category;
       const isMethodMatched =
         !conditions.method || item.payment === conditions.method;
-      let isTypeMatched = true;
-      if (conditions.type === "수입") isTypeMatched = item.amount > 0;
-      if (conditions.type === "지출") isTypeMatched = item.amount < 0;
+      const isTypeMatched =
+        !conditions.type ||
+        (conditions.type === "수입" && item.amount > 0) ||
+        (conditions.type === "지출" && item.amount < 0);
+
       return isTitleMatched && isCategoryMatched && isMethodMatched && isTypeMatched;
     });
   },
@@ -106,7 +99,6 @@ const ExpenseService = {
    */
   getSortedUniqueValues(expenses, key) {
     return this.getUniqueValues(expenses, key)
-      .filter(Boolean)
       .sort((a, b) => a.localeCompare(b, "ko"));
   },
 };

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { StyledButton } from "@/components/common/Button";
-import { colors } from "@/styles/tokens";
+import { colors, radius } from "@/styles/tokens";
 
 export const StyledHeader = styled.header`
   position: fixed;
@@ -16,7 +16,7 @@ export const StyledHeader = styled.header`
   max-width: 120rem;
   height: 4rem;
   padding: 0 1rem;
-  border-radius: 30px;
+  border-radius: ${radius.pill};
 
   background-color: white;
   box-shadow: 0 0.8rem 2.4rem rgb(0 0 0 / 12%);
@@ -24,6 +24,7 @@ export const StyledHeader = styled.header`
 
 export const Title = styled.h1`
   margin-left: 1rem;
+  font-family: dunggeunmo, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
 `;

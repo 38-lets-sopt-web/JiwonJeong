@@ -1,67 +1,32 @@
-import { Global, css } from '@emotion/react';
+import { Global, css } from "@emotion/react";
+import dungGeunMo from '@/fonts/DungGeunMo.woff2';
+import pretendard from '@/fonts/PretendardVariable.woff2';
 
 function GlobalStyle() {
   return (
     <Global
       styles={css`
-        *,
-        *::before,
-        *::after {
-          box-sizing: border-box;
+        @font-face {
+          font-family: dunggeunmo;
+
+          font-display: swap;
+          src: url(${dungGeunMo}) format("woff2");
         }
 
-        html,
-        body,
-        #root {
-          min-height: 100%;
+        @font-face {
+          font-family: pretendard;
+
+          font-display: swap;
+          src: url(${pretendard}) format("woff2");
         }
 
         body {
-          margin: 0;
-          font-family:
-            system-ui,
-            -apple-system,
-            BlinkMacSystemFont,
-            'Segoe UI',
-            sans-serif;
-          text-rendering: optimizelegibility;
-
-          -webkit-font-smoothing: antialiased;
+          box-sizing: border-box;
         }
 
-        button,
-        input,
-        textarea,
-        select {
-          font: inherit;
-        }
-
-        button {
-          cursor: pointer;
-          padding: 0;
-          border: 0;
-          background: none;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        ul,
-        ol {
+        h1, h2, h3, h4, h5, h6, span, p {
           margin: 0;
           padding: 0;
-          list-style: none;
-        }
-
-        img,
-        picture,
-        svg,
-        video,
-        canvas {
-          display: block;
-          max-width: 100%;
         }
       `}
     />

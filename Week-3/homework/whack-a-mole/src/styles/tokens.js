@@ -14,9 +14,16 @@ export const colors = {
 
 export const radius = {
   pill: '2rem',
+  round: '1.2rem',
 };
+
+export const shadows = {
+  default: '0 0.8rem 2.4rem rgb(0 0 0 / 12%)',
+}
 
 export const fontWeights = {
   light: 300,
-  bold: 700,
+  normal: 500,
+  bold: 600,
+  black: 900,
 };

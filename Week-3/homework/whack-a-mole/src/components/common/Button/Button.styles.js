@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { colors, fontWeights, radius } from '@/styles/tokens';
+import styled from "@emotion/styled";
+import { colors, fontWeights, radius } from "@/styles/tokens";
 
 export const StyledButton = styled.button`
   padding: 0.6rem 1.2rem;

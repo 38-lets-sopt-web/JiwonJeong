@@ -29,27 +29,59 @@ export const ButtonHStack = styled(HStack)`
 export const MoleHoleWrapper = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
-  gap: clamp(1rem, 2vw, 2rem);
   align-items: center;
   justify-content: center;
 
-  width: min(80%, 42rem);
+  width: min(80%, 44rem);
   margin: 0 auto;
 `;
 
-export const MoleHoleHStack = styled(HStack)`
-  gap: clamp(1rem, 3vw, 2.5rem);
-  justify-content: center;
+export const MoleHoleGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${({ $boardSize }) => $boardSize}, 1fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  width: min(100%, ${({ $boardSize }) => ($boardSize === 4 ? "34rem" : "38rem")});
 `;
 
-export const MoleHole = styled.div`
+export const MoleHole = styled.button`
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   aspect-ratio: 1;
-  width: clamp(5rem, 12vw, 10rem);
-  max-width: 10rem;
+  width: 100%;
+  border: none;
   border-radius: 50%;
 
-  background-color: pink;
+  font-family: dunggeunmo, sans-serif;
+
+  background-color: #f7dba7;
+  box-shadow: inset 0 -0.8rem 1.6rem rgb(0 0 0 / 12%);
+`;
+
+export const Mole = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+
+  font-size: clamp(0.9rem, 1.7vw, 1.4rem);
+  color: ${colors.white};
+
+  background-color: #8b5e3c;
+`;
+
+export const HitMole = styled(Mole)`
+  background-color: ${colors.accent_positive};
+`;
+
+export const Bomb = styled(Mole)`
+  background-color: ${colors.black};
 `;
 
 export const StartButton = styled(StyledButton)`

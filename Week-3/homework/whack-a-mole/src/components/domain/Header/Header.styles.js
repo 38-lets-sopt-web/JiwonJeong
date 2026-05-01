@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { StyledButton } from "@/components/common/Button";
-import { colors, radius } from "@/styles/tokens";
+import { colors, layout, radius, shadows } from "@/styles/tokens";
 
 export const StyledHeader = styled.header`
   position: fixed;
-  top: 2rem;
+  top: ${layout.headerTop};
   left: 50%;
   transform: translateX(-50%);
 
@@ -12,14 +12,14 @@ export const StyledHeader = styled.header`
   gap: 1rem;
   align-items: center;
 
-  width: calc(100% - 4rem);
+  width: calc(100% - ${layout.pagePadding} * 2);
   max-width: 120rem;
-  height: 4rem;
+  height: ${layout.headerHeight};
   padding: 0 1rem;
   border-radius: ${radius.pill};
 
-  background-color: white;
-  box-shadow: 0 0.8rem 2.4rem rgb(0 0 0 / 12%);
+  background-color: ${colors.white};
+  box-shadow: ${shadows.default};
 `;
 
 export const Title = styled.h1`
@@ -36,9 +36,12 @@ export const ButtonGroup = styled.div`
 `;
 
 export const HeaderButton = styled(StyledButton)`
-  background-color: ${colors.accent_neutral};
+  color: ${({ $isActive }) => ($isActive ? colors.white : colors.accent)};
+
+  background-color: ${({ $isActive }) => ($isActive ? colors.accent : colors.white)};
 
   &:hover {
-    background-color: ${colors.accent_neutral_hover};
+    color: ${colors.white};
+    background-color: ${colors.accent};
   }
 `;

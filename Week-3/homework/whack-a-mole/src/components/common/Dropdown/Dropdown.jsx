@@ -1,37 +1,58 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { DropdownWrapper, DropdownHeader, MenuList, MenuItem } from "./Dropdown.styles";
 
 const DownArrowIcon = () => (
-  <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '12px' }}>
-    <path d="M1 1L6 6L11 1" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg aria-hidden="true" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M1 1L6 6L11 1"
+      stroke="#000000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
-const Dropdown = () => {
+const Dropdown = ({ disabled = false, level, levels, onChangeLevel }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLevel, setCurrentLevel] = useState('Level 1');
 
-  const levels = ['Level 1', 'Level 2', 'Level 3'];
+  const handleToggle = () => {
+    if (disabled) {
+      return;
+    }
+
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const handleSelect = (levelOption) => {
+    onChangeLevel(levelOption);
+    setIsOpen(false);
+  };
 
   return (
     <DropdownWrapper>
-      <DropdownHeader onClick={() => setIsOpen(!isOpen)}>
-        <span className="level-text">{currentLevel}</span>
+      <DropdownHeader
+        type="button"
+        aria-disabled={disabled}
+        aria-expanded={isOpen}
+        disabled={disabled}
+        onClick={handleToggle}
+      >
+        <span className="level-text">Level {level}</span>
         <DownArrowIcon />
       </DropdownHeader>
 
       {isOpen && (
-        <MenuList>
-          {levels.map((level) => (
+        <MenuList role="listbox" aria-label="레벨 선택">
+          {levels.map((levelOption) => (
             <MenuItem 
-              key={level} 
-              isSelected={level === currentLevel}
-              onClick={() => {
-                setCurrentLevel(level);
-                setIsOpen(false);
-              }}
+              role="option"
+              key={levelOption}
+              aria-selected={levelOption === level}
+              $isSelected={levelOption === level}
+              onClick={() => handleSelect(levelOption)}
             >
-              {level}
+              Level {levelOption}
             </MenuItem>
           ))}
         </MenuList>

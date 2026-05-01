@@ -8,11 +8,12 @@ export const DropdownWrapper = styled.div`
 `;
 
 export const DropdownHeader = styled.button`
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.8rem;
 
   padding: 0.8rem 1rem;
   border: none;
@@ -20,10 +21,10 @@ export const DropdownHeader = styled.button`
 
   background-color: ${colors.white};
   box-shadow: ${shadows.default};
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
 
   transition: all 0.2s ease;
 
-  /* 텍스트 스타일 */
   .level-text {
     font-size: 1.1rem;
     font-weight: ${fontWeights.bold};
@@ -57,9 +58,9 @@ export const MenuItem = styled.li`
   border-radius: ${radius.round};
 
   font-weight: 500;
-  color: ${props => props.isSelected ? colors.white : colors.black};
+  color: ${({ $isSelected }) => ($isSelected ? colors.white : colors.black)};
 
-  background-color: ${props => props.isSelected ? colors.black : colors.white};
+  background-color: ${({ $isSelected }) => ($isSelected ? colors.black : colors.white)};
 
   transition: background-color 0.2s ease;
 
@@ -69,6 +70,7 @@ export const MenuItem = styled.li`
 
   &:hover {
     color: ${colors.white};
-    background-color: ${props => props.isSelected ? colors.accent_neutral_hover : colors.accent_neutral};
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? colors.accent_neutral_hover : colors.accent_neutral};
   }
 `;

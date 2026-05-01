@@ -1,6 +1,6 @@
 import { Global, css } from "@emotion/react";
-import dungGeunMo from '@/fonts/DungGeunMo.woff2';
-import pretendard from '@/fonts/PretendardVariable.woff2';
+import dungGeunMo from "@/fonts/DungGeunMo.woff2";
+import pretendard from "@/fonts/PretendardVariable.woff2";
 
 function GlobalStyle() {
   return (

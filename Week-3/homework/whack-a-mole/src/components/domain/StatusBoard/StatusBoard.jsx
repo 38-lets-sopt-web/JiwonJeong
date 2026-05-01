@@ -9,30 +9,35 @@ import {
   StatusHStack,
 } from "./StatusBoard.styles";
 
-function StatusBoard() {
+const getStatusCards = ({ score, timeLeft }) => [
+  { title: "남은 시간", value: (timeLeft / 10).toFixed(1) },
+  { title: "총 점수", value: score },
+];
+
+function StatusBoard({ failCount, message, score, successCount, timeLeft }) {
+  const statusCards = getStatusCards({ score, timeLeft });
+
   return (
     <StyledStatusBoard>
-      <Board>
-        <Title>남은 시간</Title>
-        <ValueText>0</ValueText>
-      </Board>
-      <Board>
-        <Title>총 점수</Title>
-        <ValueText>0</ValueText>
-      </Board>
+      {statusCards.map(({ title, value }) => (
+        <Board key={title}>
+          <Title>{title}</Title>
+          <ValueText>{value}</ValueText>
+        </Board>
+      ))}
       <StatusHStack>
         <Board>
           <SuccessTitle>성공</SuccessTitle>
-          <ValueText>0</ValueText>
+          <ValueText>{successCount}</ValueText>
         </Board>
         <Board>
           <FailTitle>실패</FailTitle>
-          <ValueText>0</ValueText>
+          <ValueText>{failCount}</ValueText>
         </Board>
       </StatusHStack>
       <Board>
         <Title>안내 메세지</Title>
-        <Text>게임을 시작해 주세요!</Text>
+        <Text>{message}</Text>
       </Board>
     </StyledStatusBoard>
   );

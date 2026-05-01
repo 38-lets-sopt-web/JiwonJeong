@@ -11,17 +11,17 @@ export const DropdownHeader = styled.button`
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   display: flex;
+  gap: 0.8rem;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8rem;
 
   padding: 0.8rem 1rem;
   border: none;
   border-radius: ${radius.round};
 
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
   background-color: ${colors.white};
   box-shadow: ${shadows.default};
-  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
 
   transition: all 0.2s ease;
 

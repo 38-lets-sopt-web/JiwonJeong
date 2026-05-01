@@ -37,7 +37,6 @@ export const ButtonGroup = styled.div`
 
 export const HeaderButton = styled(StyledButton)`
   color: ${({ $isActive }) => ($isActive ? colors.white : colors.accent)};
-
   background-color: ${({ $isActive }) => ($isActive ? colors.accent : colors.white)};
 
   &:hover {

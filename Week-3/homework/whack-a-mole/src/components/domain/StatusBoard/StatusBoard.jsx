@@ -1,12 +1,12 @@
 import {
   StyledStatusBoard,
   Board,
-  HStack,
   Title,
   ValueText,
   Text,
   SuccessTitle,
   FailTitle,
+  StatusHStack,
 } from "./StatusBoard.styles";
 
 function StatusBoard() {
@@ -20,7 +20,7 @@ function StatusBoard() {
         <Title>총 점수</Title>
         <ValueText>0</ValueText>
       </Board>
-      <HStack>
+      <StatusHStack>
         <Board>
           <SuccessTitle>성공</SuccessTitle>
           <ValueText>0</ValueText>
@@ -29,7 +29,7 @@ function StatusBoard() {
           <FailTitle>실패</FailTitle>
           <ValueText>0</ValueText>
         </Board>
-      </HStack>
+      </StatusHStack>
       <Board>
         <Title>안내 메세지</Title>
         <Text>게임을 시작해 주세요!</Text>

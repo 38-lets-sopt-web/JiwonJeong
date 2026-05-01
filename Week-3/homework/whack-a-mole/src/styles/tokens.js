@@ -8,8 +8,8 @@ export const colors = {
   accent_positive_hover: '#28A745',
   accent_negative: '#FF3B30',
   accent_negative_hover: '#E02E24',
-  accent_neutral: '#8E8E93',
-  accent_neutral_hover: '#636366',
+  accent_neutral: '#aaaab2',
+  accent_neutral_hover: '#707075',
 };
 
 export const radius = {

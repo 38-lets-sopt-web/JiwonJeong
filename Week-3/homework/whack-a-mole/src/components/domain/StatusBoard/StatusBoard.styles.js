@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { colors, fontWeights, radius, shadows } from "@/styles/tokens";
+import { HStack } from "@/components/common/Hstack";
 
 export const StyledStatusBoard = styled.section`
   display: flex;
@@ -9,9 +10,7 @@ export const StyledStatusBoard = styled.section`
 
   width: 20%;
   min-width: 10rem;
-  height: calc(100% - 2rem - 4rem - 2rem);
-  margin-top: calc(2rem + 4rem + 2rem);
-  margin-left: 2rem;
+  height: 100%;
 `;
 
 export const Board = styled.div`
@@ -29,17 +28,6 @@ export const Board = styled.div`
 
   background-color: ${colors.white};
   box-shadow: ${shadows.default};
-`;
-
-export const HStack = styled.div`
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-
-  & > * {
-    flex: 1;
-    min-width: 0;
-  }
 `;
 
 export const Title = styled.h2`
@@ -62,4 +50,11 @@ export const ValueText = styled.p`
 
 export const Text = styled.p`
   margin-top: 0.5rem;
+`;
+
+export const StatusHStack = styled(HStack)`
+  & > * {
+    flex: 1;
+    min-width: 0;
+  }
 `;
